@@ -1,0 +1,48 @@
+@import "mixins.scss";
+//egyszerübb példa ami nem mixines, nem kell behelyetesíteni 
+
+@for $i from 1 through 10 {
+    .p-#{$i*5} {
+        padding:#{$i*5}px;
+    }
+    .m-#{$i*5} {
+        margin:#{$i*5}px;
+    }
+}
+/*
+Marginokat és a paddingeket 5-50-ig osztáyokkal tudjuk majd beállítani 
+még sokféle ilyen lehetőség van pl.padding-bottom, right, vagy a height-ot stb. -> !!!!!!!! ezért kell a loopProperties a mixins.scss
+
+.p-5 {
+    padding: 5px;
+}
+
+.m-5 {
+  margin: 5px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.m-10 {
+  margin: 10px;
+ */
+
+ @include loopProperties(5, 50, 5, padding, "p"); //mixin meghívásánál mindig include 
+ @include loopProperties(5, 50, 5, margin, "m");
+ @include loopProperties(5, 50, 5, margin-left, "ml");
+ @include loopProperties(5, 50, 5, margin-right, "mr");
+ //@include loopProperties(5, 1500, 50, max-width, "mw");
+ @include loopProperties(5, 100, 5, max-width, "mw", "%");//itt már meghatároztuk a mixinben, hogy a mértékegységet (unit-ot) is be lehessen áll
+
+ /*
+ Lett sok osztályunk a properties.css-ben, ilyenek -> 
+ .p-45 {
+  padding: 45px;
+}
+
+.m-5 {
+  margin: 5px;
+}
+ */

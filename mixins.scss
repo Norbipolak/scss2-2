@@ -1,0 +1,24 @@
+/*
+Sokszor fordul elő, hogy szinte minden tulajdonság megegyezik különböző osztályokban
+hogy mennyi a margin-ja, mennyi a padding-je 
+
+erre létre lehet hozni egy mixin-t 
+*/
+
+@mixin loopProperties($from, $to, $step, $prop,$className, $unit:px) { //ezt még ki tudjuk egészíteni mértékegységgel, hogy ne csak pixel lehessen
+    @while($from <= $to) {                                              // $unit:px alapértelmezetten px, de ezt nem muszály megadni
+        .#{$className}-#{$from} { //mondjuk p-5 
+            #{$prop}:#{$from}#{$unit}; //mondjuk padding:5px; de lehet bármilyen tulajdonság, amit beírunk ennek a eljárás mehívásakor
+        }
+
+        $from:$from + $step;
+    }
+}
+
+/*
+ha mondjuk a from 5 to 50 step 5, akkor minden körben a fromhoz hozzáadunk 5-t
+egészen addig, amíg a from kisebb, mint a to 
+lesz nekünk 5,10,15 stb, ugyanugy mint a settingsben volt 
+
+settingsbe importáljuk ezt mixins.scss és meghívjuk ott a loopProperties-t
+*/
